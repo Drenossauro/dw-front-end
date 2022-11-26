@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    border: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+body img {
+    width: 100vw;
+    height: 100%;
+    z-index: 2;
+}
+
+main {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main #jogador {
+    width: 910px;
+    height: 220px;
+}
+
+main #jogador img {
+    width: 100%;
+    height: 100%;
+}
+
+main #lupa {
+    width: 200px;
+    height: 200px;
+}
+
+main #lupa img {
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+}
