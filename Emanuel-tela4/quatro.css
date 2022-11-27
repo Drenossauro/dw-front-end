@@ -21,11 +21,12 @@ main {
     width: 100%;
     height: auto;
     position: absolute;
-    top: 30%;
+    top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 64px;
 }
 
 main #jogador {
