@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap');
+
+body{
+    height: 97.5vh;
+    background: #b3dbf5;
+    background-image: url('img/background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center bottom;
+    font-family: 'Poppins', sans-serif;
+}
+
+h3{
+    text-align: center;
+    font-size: 1.8rem;
+    color: white;
+}
+
+div.paulo_container{
+    height: 150px;
+    /* border: 1px solid black; */
+}
+
+#c1{
+    
+    /* background: yellow; */
+    background-image: url(img/acertou.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#c2{
+    /* background: turquoise; */
+    /* background-image: url(gif/party-popper.gif); */
+    background-repeat: no-repeat;
+
+
+}
+
+#c3{
+    /* background: greenyellow; */
+    /* background-image: url(img/pontuacao.png); */
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#div.c3{
+    background: red;
+}
+
+
+/* formatação das imagens  t6 -------------------------*/
+/* div.paulo_imagem_acertou{
+    text-align: center;
+} */
+
+div.paulo_imagem_pontuação{
+    text-align: center;
+}
+
+
+
+/* formatação do gif t6 ------------------------------*/
+div.paulo_gif{
+    /* border: 1px solid red; */
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+div.paulo_gif img{
+    border-radius: 20px;
+    width: 110px;
+    height: 110px;
+}
+
