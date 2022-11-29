@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap');
 
-body{
-    height: 97.5vh;
+* {
+    margin: 0;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
     background: #b3dbf5;
     background-image: url('img/background.png');
     background-repeat: no-repeat;
@@ -9,36 +14,16 @@ body{
     background-position: center bottom;
     font-family: 'Poppins', sans-serif;
 }
-h3{
+
+h3 {
     text-align: center;
     font-size: 1.8rem;
     color: white;
 }
-div.paulo_container{
-    height: 150px;
-}
-#c1{
-    background-image: url(img/acertou.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-#c2{
-    background-repeat: no-repeat;
-    position: relative;
-}
-#c3{
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-/* formatação das imagens  t6 -------------------------*/
-div.paulo_imagem_pontuação{
-    text-align: center;
-}
-/* formatação do gif t6 ------------------------------*/
-div.paulo_gif{
-    position: absolute;
-    background:crimson;
+
+.paulo_pai_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 15px;
-    text-align: center;
-    border-radius: 10px;
 }
