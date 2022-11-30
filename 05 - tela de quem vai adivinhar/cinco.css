@@ -269,18 +269,25 @@ color: rgba(34, 42, 86, 0.6);
 }
 
 .emanuel-boxDois-main input[type=button] {
-    border-radius: 24px;
-    width: 280px;
     height: 48px;
-    /* text */
+    width: 280px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+    background: rgba(255, 174, 2, 1);
+    background: linear-gradient(180deg, #FFFFFF 0%, #000000 100%);
+    border: 6px solid;
+    border-image-source: linear-gradient(180deg, #FFFFFF 0%, #000000 100%);
+
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #FFAE02;
+    background-blend-mode: soft-light, normal;
+    border-radius: 24px;
+
+    color: #FFFFFF;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14), 0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+    text-align: center;
+    letter-spacing: -0.015em;
     font-weight: 900;
     font-size: 25px;
     line-height: 38px;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    letter-spacing: -0.015em;
-    color: #FFFFFF;
-    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14), 0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
-    background: rgba(255, 174, 2, 1);
 }
