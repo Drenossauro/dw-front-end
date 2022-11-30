@@ -86,7 +86,43 @@ body .emanuel-imagem {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 6px solid rgba(92, 109, 224, 1);
+}
+
+.emanuel-box-um canvas {
+    width: 672px;
+    height: 360px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+/* De cima */
+.emanuel-box-um::after {
+    position: absolute;
+    border-radius: 40px 40px 0px 0px;
+    z-index: -1;
+    content: '';
+    background: linear-gradient(to top, #5C6DE0, rgb(148, 161, 248));
+    width: 730px;
+    height: 50%;
+    bottom: 22.4%;
+    border-top: 3px solid #4c6381;
+    border-right: 3px solid #4c6381;
+    border-left: 3px solid #4c6381;
+}
+
+/* De baixo */
+.emanuel-box-um::before {
+    position: absolute;
+    border-radius: 0px 0px 40px 40px;
+    z-index: -2;    
+    content: '';
+    background: linear-gradient(to top, #5C6DE0, rgb(148, 161, 248));
+    width: 730px;
+    height: 50%;
+    bottom: -7px;
+    border-bottom: 3px solid #4c6381;
+    border-right: 3px solid #4c6381;
+    border-left: 3px solid #4c6381;
 }
 
 /* Caixa grande da direita */
