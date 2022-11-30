@@ -1,0 +1,98 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+body .emanuel-imagem {
+    width: 100vw;
+    height: 100%;
+    z-index: 2;
+}
+
+.emanuel-imagem img {
+    width: 100%;
+    height: 100%;
+}
+
+.emanuel-main {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 64px;
+    margin-top: 80px;
+}
+
+.emanuel-tempo {
+    width: 152px;
+    height: 128px;
+    gap: 8px;
+    display: grid;
+    place-items: center;
+}
+
+.emanuel-tempo #emanuel-imagem-tempo {
+    height: auto;
+    width: auto;
+}
+
+.emanuel-tempo #emanuel-imagem-tempo img {
+    width: 152px;
+    height: 60px;
+}
+
+.emanuel-tempo #emanuel-tempo-escrito {
+    width: 101px;
+    height: 60px;
+    
+}
+
+.emanuel-tempo #emanuel-tempo-escrito h1{
+    font-weight: bolder;
+    color: #FFFFFF;
+    font-size: 40px;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5), 0 0 25px rgb(0, 0, 0, 0.5), 0 0 5px rgb(0, 0, 0, 0.5);
+}
+
+.emanuel-boxes {
+    width: 1144px;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 64px;
+}
+
+/* Caixa grande da esquerda */
+.emanuel-box-um {
+    width: 720px;
+    height: 488px;
+    border-radius: 32px;
+    background-image: linear-gradient(to bottom ,#5C6DE0, #5C6DE0, rgb(148, 161, 248));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 6px solid rgba(92, 109, 224, 1);
+}
+
+/* Caixa grande da direita */
+.emanuel-box-dois {
+    width: 360px;
+    height: 244px;
+    border-radius: 16px;
+    background-color: blueviolet;
+}
