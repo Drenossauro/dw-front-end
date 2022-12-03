@@ -1,0 +1,221 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* https://www.w3schools.com/cssref/playdemo.php?filename=playcss_align-items */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor1: rgba(0, 0, 0, 0.45);
+    --cor2: rgba(255, 255, 255, 0.45);
+    --cor3: #5c6de0;
+    --cor4: rgba(0, 0, 0, 0.25);
+    --cor5: rgba(255, 255, 255, 0.25);
+    --cor6: #38469e;
+    --cor7: rgba(91, 26, 26, 0.14);
+    --cor8: rgba(123, 12, 12, 0.12);
+    --cor9: rgba(136, 13, 13, 0.2);
+    --cor10: #ffffff;
+    --cor11: #fcfdfd;
+    --cor12: #232b59;
+    --cor13: #ffae02;
+    --cor14: rgba(255, 255, 255, 0);
+    --cor15: #222a56;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.eloisa_algerimo_novo_jogo {
+    width: 360px;
+    height: auto;
+    border-style: solid;
+    border-color: var(--cor4);
+    border-width: 3px;
+    background: linear-gradient(180deg, var(--cor1) 0%, var(--cor2) 100%),
+        var(--cor3);
+    background-blend-mode: soft-light, normal;
+    border-radius: 16px;
+}
+.eloisa_algerimo_novo_jogo1 {
+    width: 336px;
+    height: auto;
+    background: linear-gradient(180deg, var(--cor4) 0%, var(--cor5) 100%),
+        var(--cor6);
+    background-blend-mode: soft-light, normal;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.eloisa_algerimo_novo_jogo1 #ajuste {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.eloisa_algerimo_novo_jogo h3 {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+    color: var(--cor10);
+}
+
+.eloisa_algerimo_novo_jogo1 h4 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--cor10);
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+}
+
+.eloisa_algerimo_novo_jogo1 input {
+    padding: 8px 12px;
+    gap: 10px;
+    width: 280px;
+    height: 40px;
+    background: var(--cor11);
+    border: 2px solid var(--cor6);
+    border-radius: 8px;
+}
+
+.eloisa_algerimo_novo_jogo1 .botao_laranja {
+    background: linear-gradient(180deg, var(--cor4) 0%, var(--cor14) 100%),
+        var(--cor13);
+    background-blend-mode: soft-light, normal;
+    border-radius: 24px;
+    width: 280px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--cor10);
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+    margin-bottom: 1rem;
+}
+
+.eloisa_algerimo_novo_jogo1 .botao_branco {
+    background: white;
+    background-blend-mode: soft-light, normal;
+    border-radius: 10px;
+    width: 280px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--cor15);
+    margin-top: 10px;
+}
+
+.eloisa_algerimo_box3 {
+    display: flex;
+    align-items: flex-start;
+    width: 400px;
+    justify-content: space-between;
+    margin-top: 64px;
+}
+
+.eloisa_algemiro_content,
+.eloisa_algemiro_box1 {
+    /* justify-content: center; */
+    align-items: center;
+    display: flex;
+}
+
+.eloisa_algemiro_container {
+    /* width: 700px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.eloisa_algemiro_tempo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 100px;
+    top: 80px;
+}
+
+.eloisa_algemiro_box1 {
+    margin-bottom: 24px;
+}
+
+.eloisa_algerimo_novo_jogo,
+.eloisa_algerimo_novo_jogo1 .eloisa_algerimo_input_button {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    gap: 1rem;
+}
+
+.eloisa_algerimo_titulo_card {
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.eloisa_algerimo_novo_jogo_titulo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* ================================== */
+
+.eloisa_algemiro_box2 {
+    width: 500px;
+    /* height: 200px; */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: justify;
+
+    color: var(--cor10);
+
+    text-shadow: 0px 4px 4px var(--cor4);
+}
+
+.eloisa_algemiro_tempo h2,
+.eloisa_algemiro_box1 h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: justify;
+
+    color: var(--cor10);
+
+    text-shadow: 0px 4px 4px var(--cor4);
+}
+
+/* ========================================= */
