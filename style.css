@@ -33,6 +33,10 @@ body {
     background-size: cover;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* -------------------------- TELA 1 -------------------------- */
 .eloisa_algerimo_novo_jogo {
     width: 360px;
@@ -160,8 +164,6 @@ body {
     align-items: flex-start;
 }
 
-/* ================================== */
-
 .eloisa_algemiro_box2 {
     width: 1000px;
     height: 200px;
@@ -179,4 +181,16 @@ body {
 
     margin-bottom: 64px;
 }
-/* ========================================= */
+
+/* -------------------------- TELA 9 -------------------------- */
+.mathews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.mathews-pontos {
+    text-align: center;
+    color: white;
+}
