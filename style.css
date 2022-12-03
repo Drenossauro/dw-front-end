@@ -43,7 +43,9 @@ button {
     cursor: pointer;
 }
 
-/* -------------------------- TELA 1 -------------------------- */
+/* ------------------------------------------------------------ */
+/*                            TELA 1                            */
+/* ------------------------------------------------------------ */
 .eloisa_algerimo_novo_jogo {
     width: 360px;
     height: auto;
@@ -188,7 +190,167 @@ button {
     margin-bottom: 64px;
 }
 
-/* -------------------------- TELA 9 -------------------------- */
+/* ------------------------------------------------------------ */
+/*                            TELA 2                            */
+/* ------------------------------------------------------------ */
+.flavio-aguadando-gif {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+    width: 100%;
+    height: 208px;
+}
+
+.flavio-aguardando {
+    width: 620px;
+    height: 208px;
+}
+
+.flavio-p-figura {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flavio-gif-text {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.flavio-gif {
+    height: 208px;
+    width: 100px;
+}
+
+.flavio-gif-espera {
+    width: 145;
+    height: 152.75px;
+}
+
+.flavio-compartilhe {
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 25);
+}
+
+.flavio-chave-acesso {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 360px;
+    height: 244px;
+    align-items: center;
+    justify-content: center;
+    top: 370px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(255, 255, 255, 0.45) 100%
+        ),
+        #5c6de0;
+    background-blend-mode: soft-light, normal;
+    border-radius: 16px;
+}
+
+.flavio-chave-texto {
+    display: flex;
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-numero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 336px;
+    height: 180px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0.25) 100%
+        ),
+        #38469e;
+    background-blend-mode: soft-light, normal;
+    border-radius: 8px;
+}
+
+.flavio-chave-numero {
+    position: absolute;
+    top: 30%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05rem;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-chave-botao {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 280px;
+    height: 48px;
+    bottom: 20%;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        #ffae02;
+    background-blend-mode: soft-light, normal;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.flavio-copiar-chave {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 60px;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 9                            */
+/* ------------------------------------------------------------ */
 .mathews-container {
     display: flex;
     flex-direction: column;
@@ -201,7 +363,9 @@ button {
     color: white;
 }
 
-/* -------------------------- TELA 10 -------------------------- */
+/* ------------------------------------------------------------- */
+/*                            TELA 10                            */
+/* ------------------------------------------------------------- */
 
 .ana-h1 {
     font-size: 28px;
