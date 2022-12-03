@@ -349,6 +349,49 @@ button {
 }
 
 /* ------------------------------------------------------------ */
+/*                            TELA 4                            */
+/* ------------------------------------------------------------ */
+
+body .emanuel-img {
+    width: 100vw;
+    height: 100%;
+    z-index: 2;
+}
+
+.emanuel-main {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+
+.emanuel-main #emanuel-jogador {
+    width: 910px;
+    height: 220px;
+}
+
+.emanuel-main #emanuel-jogador .emanuel-img {
+    width: 100%;
+    height: 100%;
+}
+
+.emanuel-main #emanuel-lupa {
+    width: 200px;
+    height: 200px;
+}
+
+.emanuel-main #emanuel-lupa .emanuel-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+}
+
+/* ------------------------------------------------------------ */
 /*                            TELA 9                            */
 /* ------------------------------------------------------------ */
 .mathews-container {
