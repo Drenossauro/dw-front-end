@@ -8,6 +8,7 @@
 }
 
 :root {
+    /* Variáveis - tela 1 */
     --cor1: rgba(0, 0, 0, 0.45);
     --cor2: rgba(255, 255, 255, 0.45);
     --cor3: #5c6de0;
@@ -22,6 +23,11 @@
     --cor12: #232b59;
     --cor13: #ffae02;
     --cor14: rgba(255, 255, 255, 0);
+
+    /* Variáveis - tela 10 */
+    --bg-placar: #5c6de0;
+    --text-painel: #ffffff;
+    --bg-pontuacao: #38469e;
 }
 
 body {
@@ -193,4 +199,91 @@ button {
 .mathews-pontos {
     text-align: center;
     color: white;
+}
+
+/* -------------------------- TELA 10 -------------------------- */
+
+.ana-h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: var(--text-painel);
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ana-h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: -0.015em;
+    color: var(--text-painel);
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ana-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ana-text {
+    margin-top: 80px;
+}
+
+.ana-placar {
+    width: 600px;
+    height: 244px;
+    margin-top: 64px;
+    border-radius: 16px;
+
+    border: 3px solid transparent;
+    border-image: linear-gradient(to bottom, #ffffff, #000000);
+
+    background-blend-mode: soft-light, normal;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(255, 255, 255, 0.45) 100%
+        ),
+        var(--bg-placar);
+
+    box-shadow: 0px 11px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 9px 46px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 24px 38px 0px rgba(0, 0, 0, 0.14);
+    filter: drop-shadow(0px 24px 38px rgba(0, 0, 0, 0.14))
+        drop-shadow(0px 9px 46px rgba(0, 0, 0, 0.12))
+        drop-shadow(0px 11px 15px rgba(0, 0, 0, 0.2));
+}
+
+.ana-pontuacao {
+    display: flex;
+    border-radius: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 180px;
+    margin: 0 12px 16px;
+    padding: 24px 18.5px 28px;
+
+    align-items: center;
+    background-blend-mode: soft-light, normal;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0.25) 100%
+        ),
+        #38469e;
+}
+
+.ana-jogador1,
+.ana-jogador2 {
+    text-align: center;
+}
+
+.ana-barraDivisao {
+    width: 1px;
+    height: 100px;
+    background: var(--text-painel);
 }
