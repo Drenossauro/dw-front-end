@@ -109,28 +109,7 @@ body .emanuel-imagem {
     width: 730px;
     height: 499px;
     border: 6px solid #4c6381;
-    /* bottom: 22.4%; */
-    /* border-top: 3px solid #4c6381;
-    border-right: 3px solid #4c6381;
-    border-left: 3px solid #4c6381; */
 }
-
-/* De baixo */
-
-/* .emanuel-box-um::before {
-    position: absolute;
-    display: none;
-    border-radius: 0px 0px 40px 40px;
-    z-index: -2;    
-    content: '';
-    background: linear-gradient(to top, #5C6DE0, rgb(148, 161, 248));
-    width: 730px;
-    height: 50%;
-    bottom: -7px;
-    border-bottom: 3px solid #4c6381;
-    border-right: 3px solid #4c6381;
-    border-left: 3px solid #4c6381; 
-} */
 
 .emanuel-boxUm-main {
     display: flex;
@@ -251,12 +230,9 @@ body .emanuel-imagem {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-/* identical to box height */
-
-display: flex;
-align-items: center;
-
-color: rgba(34, 42, 86, 0.6);
+    display: flex;
+    align-items: center;
+    color: rgba(34, 42, 86, 0.6);
 }
 
 .emanuel-boxDois-main #emanuel-palpite input[type=text]:focus {
