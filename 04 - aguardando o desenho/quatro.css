@@ -11,13 +11,18 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-body img {
+body .emanuel-imagem {
     width: 100vw;
     height: 100%;
     z-index: 2;
 }
 
-main {
+.emanuel-imagem img {
+    width: 100%;
+    height: 100%;
+}
+
+.emanuel-main {
     width: 100%;
     height: auto;
     position: absolute;
@@ -29,22 +34,23 @@ main {
     gap: 64px;
 }
 
-main #jogador {
+.emanuel-main #emanuel-jogador {
     width: 910px;
     height: 220px;
 }
 
-main #jogador img {
+.emanuel-main #emanuel-jogador img {
     width: 100%;
     height: 100%;
 }
 
-main #lupa {
+.emanuel-main #emanuel-lupa {
     width: 200px;
     height: 200px;
+    text-align: center;
 }
 
-main #lupa img {
+.emanuel-main #emanuel-lupa img {
     width: 100%;
     height: 100%;
     border-radius: 36px;
