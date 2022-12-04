@@ -7,6 +7,524 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Variáveis - tela 1 */
+    --cor1: rgba(0, 0, 0, 0.45);
+    --cor2: rgba(255, 255, 255, 0.45);
+    --cor3: #5c6de0;
+    --cor4: rgba(0, 0, 0, 0.25);
+    --cor5: rgba(255, 255, 255, 0.25);
+    --cor6: #38469e;
+    --cor7: rgba(91, 26, 26, 0.14);
+    --cor8: rgba(123, 12, 12, 0.12);
+    --cor9: rgba(136, 13, 13, 0.2);
+    --cor10: #ffffff;
+    --cor11: #fcfdfd;
+    --cor12: #232b59;
+    --cor13: #ffae02;
+    --cor14: rgba(255, 255, 255, 0);
+
+    /* Variáveis - tela 10 */
+    --bg-placar: #5c6de0;
+    --text-painel: #ffffff;
+    --bg-pontuacao: #38469e;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+
+    background-image: url(./background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 1                            */
+/* ------------------------------------------------------------ */
+.eloisa_algerimo_novo_jogo {
+    width: 360px;
+    height: auto;
+    border-style: solid;
+    border-color: var(--cor4);
+    border-width: 3px;
+    background: linear-gradient(180deg, var(--cor1) 0%, var(--cor2) 100%),
+        var(--cor3);
+    background-blend-mode: soft-light, normal;
+    border-radius: 16px;
+}
+.eloisa_algerimo_novo_jogo1 {
+    width: 336px;
+    height: auto;
+    background: linear-gradient(180deg, var(--cor4) 0%, var(--cor5) 100%),
+        var(--cor6);
+    background-blend-mode: soft-light, normal;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 20px;
+}
+
+.eloisa_algerimo_novo_jogo1 #ajuste {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.eloisa_algerimo_novo_jogo h3 {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+    color: var(--cor10);
+}
+
+.eloisa_algerimo_novo_jogo1 h4 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--cor10);
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+}
+
+.eloisa_algerimo_novo_jogo1 input {
+    padding: 8px 12px;
+    gap: 10px;
+    width: 280px;
+    height: 40px;
+    background: var(--cor11);
+    border: 2px solid var(--cor6);
+    border-radius: 8px;
+}
+
+.eloisa_algerimo_novo_jogo1 button {
+    background: linear-gradient(180deg, var(--cor4) 0%, var(--cor14) 100%),
+        var(--cor13);
+    background-blend-mode: soft-light, normal;
+    border-radius: 24px;
+    width: 280px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--cor10);
+    text-shadow: 0px 2px 4px var(--cor7), 0px 3px 4px var(--cor8),
+        0px 1px 5px var(--cor9);
+    margin-bottom: 1rem;
+}
+
+.eloisa_algerimo_box3 {
+    display: flex;
+    align-items: flex-start;
+    width: 1000px;
+    justify-content: space-between;
+}
+
+.eloisa_algerimo_img_ou {
+    margin-top: 88px;
+}
+
+.eloisa_algemiro_box1 {
+    margin-bottom: 24px;
+}
+
+.eloisa_algemiro_container {
+    padding: 80px 0 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eloisa_algerimo_novo_jogo,
+.eloisa_algerimo_novo_jogo1 .eloisa_algerimo_input_button {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    gap: 2px;
+}
+
+.eloisa_algerimo_titulo_card {
+    width: 100%;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.eloisa_algerimo_novo_jogo_titulo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.eloisa_algemiro_box2 {
+    width: 1000px;
+    height: 200px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: justify;
+
+    color: var(--cor10);
+
+    text-shadow: 0px 4px 4px var(--cor4);
+
+    margin-bottom: 64px;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 2                            */
+/* ------------------------------------------------------------ */
+.flavio-aguadando-gif {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+    width: 100%;
+    height: 208px;
+}
+
+.flavio-aguardando {
+    width: 620px;
+    height: 208px;
+}
+
+.flavio-p-figura {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flavio-gif-text {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.flavio-gif {
+    height: 208px;
+    width: 100px;
+}
+
+.flavio-gif-espera {
+    width: 145;
+    height: 152.75px;
+}
+
+.flavio-compartilhe {
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 25);
+}
+
+.flavio-chave-acesso {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 360px;
+    height: 244px;
+    align-items: center;
+    justify-content: center;
+    top: 370px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(255, 255, 255, 0.45) 100%
+        ),
+        #5c6de0;
+    background-blend-mode: soft-light, normal;
+    border-radius: 16px;
+}
+
+.flavio-chave-texto {
+    display: flex;
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-numero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 336px;
+    height: 180px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0.25) 100%
+        ),
+        #38469e;
+    background-blend-mode: soft-light, normal;
+    border-radius: 8px;
+}
+
+.flavio-chave-numero {
+    position: absolute;
+    top: 30%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05rem;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-chave-botao {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 280px;
+    height: 48px;
+    bottom: 20%;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        #ffae02;
+    background-blend-mode: soft-light, normal;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.flavio-copiar-chave {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 60px;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow: 0px 2px 4px rgba(91, 26, 26, 0.14),
+        0px 3px 4px rgba(123, 12, 12, 0.12), 0px 1px 5px rgba(136, 13, 13, 0.2);
+}
+
+.flavio-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 4                            */
+/* ------------------------------------------------------------ */
+
+body .emanuel-img {
+    width: 100vw;
+    height: 100%;
+    z-index: 2;
+}
+
+.emanuel-main {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+
+.emanuel-main #emanuel-jogador {
+    width: 910px;
+    height: 220px;
+}
+
+.emanuel-main #emanuel-jogador .emanuel-img {
+    width: 100%;
+    height: 100%;
+}
+
+.emanuel-main #emanuel-lupa {
+    width: 200px;
+    height: 200px;
+}
+
+.emanuel-main #emanuel-lupa .emanuel-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 6                            */
+/* ------------------------------------------------------------ */
+.paulo-h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.paulo_pai_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 7                            */
+/* ------------------------------------------------------------ */
+.camila-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+}
+.camila-pontos {
+    color: white;
+}
+.camila-h1 {
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/*                            TELA 9                            */
+/* ------------------------------------------------------------ */
+.mathews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.mathews-pontos {
+    text-align: center;
+    color: white;
+}
+
+/* ------------------------------------------------------------- */
+/*                            TELA 10                            */
+/* ------------------------------------------------------------- */
+
+.ana-h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: var(--text-painel);
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ana-h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: -0.015em;
+    color: var(--text-painel);
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ana-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ana-text {
+    margin-top: 80px;
+}
+
+.ana-placar {
+    width: 600px;
+    height: 244px;
+    margin-top: 64px;
+    border-radius: 16px;
+
+    border: 3px solid transparent;
+    border-image: linear-gradient(to bottom, #ffffff, #000000);
+
+    background-blend-mode: soft-light, normal;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(255, 255, 255, 0.45) 100%
+        ),
+        var(--bg-placar);
+
+    box-shadow: 0px 11px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 9px 46px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 24px 38px 0px rgba(0, 0, 0, 0.14);
+    filter: drop-shadow(0px 24px 38px rgba(0, 0, 0, 0.14))
+        drop-shadow(0px 9px 46px rgba(0, 0, 0, 0.12))
+        drop-shadow(0px 11px 15px rgba(0, 0, 0, 0.2));
+}
+
+.ana-pontuacao {
+    display: flex;
+    border-radius: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 180px;
+    margin: 0 12px 16px;
+    padding: 24px 18.5px 28px;
+
+    align-items: center;
+    background-blend-mode: soft-light, normal;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(255, 255, 255, 0.25) 100%
+        ),
+        #38469e;
+}
+
+.ana-jogador1,
+.ana-jogador2 {
+    text-align: center;
+}
+
+.ana-barraDivisao {
+    width: 1px;
+    height: 100px;
+    background: var(--text-painel);
 }
