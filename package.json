@@ -4,7 +4,7 @@
   "description": "Feito com carinho pelo time de TADS",
   "main": "index.js",
   "scripts": {
-    "compile": "nodemon index.js",
+    "compile": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
