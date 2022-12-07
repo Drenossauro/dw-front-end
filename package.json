@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "node index.js",
+    "watch": "cross-env WATCH=true node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Drenossauro/dw-front-end/issues"
   },
-  "homepage": "https://github.com/Drenossauro/dw-front-end#readme"
+  "homepage": "https://github.com/Drenossauro/dw-front-end#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
