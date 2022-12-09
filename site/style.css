@@ -33,7 +33,7 @@
 body {
     font-family: 'Poppins', sans-serif;
 
-    background-image: url(./background.png);
+    background-image: url(./images/background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -43,12 +43,20 @@ button {
     cursor: pointer;
 }
 
+input {
+    outline: none
+}
+
+/* ------------------------------------------------------------ */
+/*                    GENERICS CLASSES                          */
+/* ------------------------------------------------------------ */
+
 .screen-container {
     display: none;
 }
 
 /* ------------------------------------------------------------ */
-/*                            TELA 1                            */
+/*                     TELA 1 e TELA 3                          */
 /* ------------------------------------------------------------ */
 .eloisa_algerimo_novo_jogo {
     width: 360px;
@@ -135,7 +143,7 @@ button {
     display: flex;
     align-items: flex-start;
     width: 1000px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .eloisa_algerimo_img_ou {
@@ -151,6 +159,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Poppins';
 }
 
 .eloisa_algerimo_novo_jogo,
@@ -178,21 +187,24 @@ button {
 }
 
 .eloisa_algemiro_box2 {
-    width: 1000px;
-    height: 200px;
-
-    font-family: 'Poppins';
+    max-width: 80%;
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
     line-height: 30px;
     text-align: justify;
-
     color: var(--cor10);
-
     text-shadow: 0px 4px 4px var(--cor4);
-
     margin-bottom: 64px;
+}
+
+.eloisa_algemiro_content {
+    color: white;
+    text-align: center;
+}
+
+.eloisa_algemiro_content h2 {
+    padding: 1rem;
 }
 
 /* ------------------------------------------------------------ */
@@ -357,44 +369,19 @@ button {
 /*                            TELA 4                            */
 /* ------------------------------------------------------------ */
 
-body .emanuel-img {
-    width: 100vw;
-    height: 100%;
-    z-index: 2;
-}
-
 .emanuel-main {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 80px;
+    padding-top: 10rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 64px;
+    color: white;
 }
 
-.emanuel-main #emanuel-jogador {
-    width: 910px;
-    height: 220px;
+.emanuel-main {
 }
 
-.emanuel-main #emanuel-jogador .emanuel-img {
-    width: 100%;
-    height: 100%;
-}
-
-.emanuel-main #emanuel-lupa {
-    width: 200px;
-    height: 200px;
-}
-
-.emanuel-main #emanuel-lupa .emanuel-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 36px;
-}
 
 /* ------------------------------------------------------------ */
 /*                            TELA 6                            */
