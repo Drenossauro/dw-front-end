@@ -77,5 +77,5 @@ function showOtherPlayerResult() {
 
 window.onload = () => {
     sessionStorage.clear()
-    showScreen(DRAW_SCREEN)
+    showScreen(INITIAL_SCREEN)
 }
