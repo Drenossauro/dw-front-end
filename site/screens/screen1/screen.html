@@ -4,21 +4,10 @@
             <img src="images/instrucoes.png" />
         </div>
         <div class="eloisa_algemiro_box2">
-            <h4>
-                1. Um dos jogadores deve fazer um desenho, salvar a
-                imagem como .jpeg, e fazer upload no campo indicado;
-                <br />
-                2. O outro jogador, por sua vez, deve tentar adivinhar
-                qual é o desenho do seu oponente. O desenho irá aparecer
-                gradualmente, e quanto mais visível ficar o desenho,
-                menos pontos o jogador vai ganhar. O jogador pode tentar
-                adivinhar até que seu tempo acabe;<br />
-                3. No fim de cada partida, os jogadores irão trocar de
-                posição: o que estava desenhando, passa a adivinhar o
-                desenho de seu oponente, e vice versa;<br />
-                4. O jogo acaba quando um dos jogadores atingir 80
-                pontos.<br />
-            </h4>
+            <h4>1. Um dos jogadores deve fazer um desenho, salvar a imagem como .jpeg, e fazer upload no campo indicado;</h4>
+            <h4>2. O outro jogador, por sua vez, deve tentar adivinhar qual é o desenho do seu oponente. O desenho irá aparecer gradualmente, e quanto mais visível ficar o desenho, menos pontos o jogador vai ganhar. O jogador pode tentar adivinhar até que seu tempo acabe;</h4>
+            <h4>3. No fim de cada partida, os jogadores irão trocar de posição: o que estava desenhando, passa a adivinhar o desenho de seu oponente, e vice versa;</h4>
+            <h4>4. O jogo acaba quando um dos jogadores atingir 80 pontos.</h4>
         </div>
         <div class="eloisa_algerimo_content">
             <div class="eloisa_algerimo_box3">
@@ -30,13 +19,9 @@
                     <div class="eloisa_algerimo_novo_jogo1">
                         <div id="ajuste">
                             <h4>Nickname:</h4>
-                            <input
-                                type="page"
-                                name="Tpage"
-                                placeholder="Digite seu Nickname"
-                            />
+                            <input id="nickname-create" placeholder="Digite seu Nickname" />
                         </div>
-                        <button>Criar Sala</button>
+                        <button onclick="createRoom()">Criar Sala</button>
                     </div>
                 </div>
                 <div class="eloisa_algerimo_img_ou">
@@ -49,17 +34,52 @@
                     <div class="eloisa_algerimo_novo_jogo1">
                         <div id="ajuste">
                             <h4>Nickname:</h4>
-                            <input type="page" name="Tpage" placeholder="Digite seu Nickname" />
+                            <input id="nickname-enter" placeholder="Digite seu Nickname" />
                         </div>
 
                         <div id="ajuste">
                             <h4>Código de acesso:</h4>
-                            <input type="page" name="Tpage" placeholder="Digite o código de acesso" />
+                            <input id="token-enter" placeholder="Digite o código de acesso" />
                         </div>
-                        <button>Entrar</button>
+                        <button onclick="enterRoom()">Entrar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function createRoom() {
+        const nickname = document.getElementById('nickname-create').value
+        const token = Math.floor(Math.random() * 10000) + 10000
+        showScreen(WAITING_FOR_SECOND_PLAYER_SCREEN, {token})
+
+        return 
+        axios.get(URL_NEW_GAME)
+            .then(function (response) {
+                console.log(response);
+                // implementar
+            })
+            .catch(function (error) {
+                toast(error);
+            })
+    }
+    
+    function enterRoom() {
+        const nickname = document.getElementById('nickname-create').value
+        const token = Math.floor(Math.random() * 10000) + 10000
+        showScreen(WAITING_FOR_SECOND_PLAYER_SCREEN, {token})
+
+        return 
+        axios.post(URL_EXISTING_GAME)
+            .then(function (response) {
+                console.log(response);
+
+                // implementar
+            })
+            .catch(function (error) {
+                toast(error);
+            })        
+    }
+</script>

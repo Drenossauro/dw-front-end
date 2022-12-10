@@ -14,7 +14,7 @@ const copyAssets = (path) => {
         })
     })
 
-    const othersFiles = ['style.css', 'script.js']
+    const othersFiles = ['style.css', 'script.js', 'consts.js']
     othersFiles.forEach(file => {
         fs.copyFile(`site/${file}`, `output/${file}`, (err) => {
             if (err) {
@@ -44,8 +44,9 @@ const compileHTML = (path) => {
         const newValue = searchValue + compiledScreens
 
         const compiledHTML = mainHTML.replace(searchValue, newValue)
-            .replace(/(\r\n|\n|\r)/gm, "")
-            .replace(/\s{2,}/g, ' ')
+            // i should implement a JS parse or some thing like that
+            // .replace(/(\r\n|\n|\r)/gm, "")
+            // .replace(/\s{2,}/g, ' ')
 
         fs.writeFile('output/output.html', compiledHTML, function (err) {
             if (err) throw err;

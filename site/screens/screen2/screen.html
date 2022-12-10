@@ -14,7 +14,7 @@
         </div>
         <div>
             <p class="flavio-compartilhe">
-                Compartilhe a chave de acesso com o seu oponete
+                Compartilhe a chave de acesso com o seu oponente
             </p>
         </div>
         <div class="flavio-chave-acesso">
@@ -23,12 +23,36 @@
             </div>
             <div class="flavio-numero">
                 <div class="flavio-chave-numero">
-                    <p id="key-number"></p>
+                    <p id="key-number">------</p>
                 </div>
-                <button class="flavio-chave-botao">
+                <button class="flavio-chave-botao" onclick="saveKey(this)">
                     <p class="flavio-copiar-chave">Copiar chave</p>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    functionCallRegister.register(WAITING_FOR_SECOND_PLAYER_SCREEN, loadScreen2)
+
+    function loadScreen2({token}) {
+        document.getElementById('key-number').innerHTML = token
+        document.getElementById('key-number').dataset.token = token
+    }
+    
+    function saveKey(button) {
+        button.focus()
+        if (navigator && navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(document.getElementById('key-number').dataset.token).then(
+                () => {
+                    document.getElementById('key-number').innerHTML = 'Copiado'
+                },
+                (err) => {
+                    console.error(err, 'clipboard write failed')
+                    document.getElementById('key-number').innerHTML = 'Erro ao copiar'
+                }
+            )
+        }
+    }
+</script>
