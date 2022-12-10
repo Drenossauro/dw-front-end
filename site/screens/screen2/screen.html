@@ -39,6 +39,10 @@
     function loadScreen2({token}) {
         document.getElementById('key-number').innerHTML = token
         document.getElementById('key-number').dataset.token = token
+
+        const intervalId = setInterval(() => {
+            showScreen(UPLOAD_SCREEN, {tip: 'fruta'})
+        }, 1000)
     }
     
     function saveKey(button) {
@@ -47,6 +51,11 @@
             navigator.clipboard.writeText(document.getElementById('key-number').dataset.token).then(
                 () => {
                     document.getElementById('key-number').innerHTML = 'Copiado'
+
+                    setTimeout(() => {
+                        const keyContainer = document.getElementById('key-number')
+                        keyContainer.innerHTML = keyContainer.dataset.token
+                    }, 2500)
                 },
                 (err) => {
                     console.error(err, 'clipboard write failed')

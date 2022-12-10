@@ -3,9 +3,8 @@
         <div class="eloisa_algemiro_content">
             <div class="eloisa_algemiro_tempo">
                 <img src="images/tempo.png">
-                <h2 id="time-screen3">--:--</h2>
+                <h2>01:30</h2>
             </div>
-
             <div class="eloisa_algemiro_box1">
                 <img src="images/Dica.png">
                 <h2 id="tip">--</h2>
@@ -23,12 +22,13 @@
                     </div>
                     <div class="eloisa_algerimo_novo_jogo1">
                         <div id="ajuste">
-                            <button class="botao_branco">
+                            <label for="file-upload" class="botao_branco">
                                 <i class='bx bx-upload'></i>
                                 Selecione a imagem
-                            </button>
+                            </label>
+                            <input type="file" id="file-upload" accept="image/jpeg" style="display: none">
                         </div>
-                        <button class="botao_laranja">Criar Sala</button>
+                        <button class="botao_laranja" onclick="upload(event)">Enviar</button>
                     </div>
                 </div>
         </div>
@@ -36,11 +36,20 @@
 </div>
 
 <script>
-    function xxxxx() {
-        
+    functionCallRegister.register(UPLOAD_SCREEN, loadScreen3)
+
+    function loadScreen3({tip}) {
+        document.getElementById('tip').innerHTML = tip.toUpperCase()
     }
     
-    function xxxxx() {
-        
+    function upload(event) {
+        const file = document.getElementById('file-upload').files
+
+        if (!file || !file.length || file.length == 0) {
+            toast('Nenhum arquivo para subir')
+            return
+        }
+
+        showScreen(WAITING_SCREEN)
     }
 </script>

@@ -5,7 +5,7 @@
                 <img src="images/tempo.png" alt="tempo escrito">
             </div>
             <div id="emanuel-tempo-escrito">
-                <h1 id="time-screen5"><span id="time-5">--:--</span></h1>
+                <h1 id="time-screen5"><span id="time-display">01:30</span></h1>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                     <form action="#" method="post">
                         <div id="emanuel-palpite">
                             <h2>Palpite:</h2>
-                            <input type="text" name="palpite" id="inputPalpite" placeholder="Digite aqui seu palpite">
+                            <input type="text" name="guess" id="guess" placeholder="Digite aqui seu palpite">
                         </div>
                         
                         <input type="button" value="Enviar">
@@ -40,11 +40,65 @@
 </div>
 
 <script>
-    function xxxxx() {
-        
+    functionCallRegister.register(DRAW_SCREEN, loadScreen5)
+    let currentPicture = 0
+
+    function loadScreen5() {
+        // load screens after start the time
+        setTimeout(() => {
+            initTime(90)
+        }, 500);
     }
     
-    function xxxxx() {
+    function initTime(time) {
+        const intervalId = setInterval(() => {
+            time--
+            showTime(time)
+            checkIfShouldRevealMore(time)
+
+            if (time == 0) {
+                endGame(intervalId)
+            }
+        }, 1000)
+    }
+
+    function formatNumberToClock(number) {
+        return number < 10 ? `0${number}` : number
+    }
+
+    function showTime(time) {
+        const minutes = Math.floor(time / 60)
+        const seconds = time % 60
+        const timeDisplay = `${formatNumberToClock(minutes)}:${formatNumberToClock(seconds)}`
+
+        document.getElementById('time-display').innerHTML = timeDisplay
+    }
+
+    function checkIfShouldRevealMore(time) {
+        if (
+            currentPicture == 0 && time < 60 ||
+            currentPicture == 1 && time < 30
+        ) {
+            currentPicture++
+            // change picture
+        }
+    }
+
+    function endGame(intervalId) {
+        clearInterval(intervalId)
+        showScreen(WRONG_GUESS_SCREEN)
+    }
+
+    function guess() {
+        const value = document.getElementById('guess').value
+        document.getElementById('guess').value = ''
         
+        setTimeout(() => {
+            if (Math.random() < 0.2) {
+                showScreen(SUCCESS_GUESS_SCREEN)
+            } else {
+                toast('Você ainda não acertou')
+            }
+        }, 850);
     }
 </script>

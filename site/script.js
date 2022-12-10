@@ -36,7 +36,7 @@ const showScreen = (screen, props) => {
 
 const toast = (msg, duration = 2500) => {
     var toast = document.getElementById('toast')
-    toast.innerHTML = `Erro: ${msg}`
+    toast.innerHTML = msg
     toast.className = 'show'
 
     setTimeout(() => {
@@ -45,6 +45,37 @@ const toast = (msg, duration = 2500) => {
     }, duration)
 }
 
+function showPlayerResult() {
+    try {
+        const game = JSON.parse(sessionStorage.getItem('game'))
+        const player = sessionStorage.getItem('player') == 1 ? 'player1' : 'player2'
+        const points = game[player].pontuacao
+    
+        document.querySelectorAll('.total-points').forEach(
+            element => element.innerHTML = `${points} pontos`
+        )
+    } catch (error) {
+        console.error(error)
+        toast('Não possivel exibir o placar')
+    }
+}
+
+function showOtherPlayerResult() {
+    try {
+        const game = JSON.parse(sessionStorage.getItem('game'))
+        const otherPlayer = sessionStorage.getItem('player') == 1 ? 'player2' : 'player1'
+        const points = game[otherPlayer].pontuacao
+    
+        document.querySelectorAll('.other-player-points').forEach(
+            element => element.innerHTML = `${points} pontos`
+        )
+    } catch (error) {
+        console.error(error)
+        toast('Não possivel exibir o placar')
+    }
+}
+
 window.onload = () => {
-    showScreen(INITIAL_SCREEN)
+    sessionStorage.clear()
+    showScreen(DRAW_SCREEN)
 }

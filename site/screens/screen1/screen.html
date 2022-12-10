@@ -53,6 +53,10 @@
     function createRoom() {
         const nickname = document.getElementById('nickname-create').value
         const token = Math.floor(Math.random() * 10000) + 10000
+
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('player', 1)
+
         showScreen(WAITING_FOR_SECOND_PLAYER_SCREEN, {token})
 
         return 
@@ -67,12 +71,20 @@
     }
     
     function enterRoom() {
-        const nickname = document.getElementById('nickname-create').value
-        const token = Math.floor(Math.random() * 10000) + 10000
-        showScreen(WAITING_FOR_SECOND_PLAYER_SCREEN, {token})
+        const nickname = document.getElementById('nickname-enter').value
+        const token = document.getElementById('token-enter').value
+        sessionStorage.setItem('nickname', nickname)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('player', 2)
+        sessionStorage.setItem('game', JSON.stringify({
+            player1: { nickname: 'alex', pontuacao: 0 },
+            player2: { nickname: 'araujo', pontuacao: 0 }
+        }))
+
+        showScreen(WAITING_SCREEN)
 
         return 
-        axios.post(URL_EXISTING_GAME)
+        axios.post(URL_EXISTING_GAME, {nickname, token})
             .then(function (response) {
                 console.log(response);
 

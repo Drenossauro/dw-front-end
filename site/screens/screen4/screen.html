@@ -12,8 +12,12 @@
 </div>
 
 <script>
-    function xxxxx() {
-        
+    functionCallRegister.register(WAITING_SCREEN, loadScreen4)
+
+    function loadScreen4() {
+        setInterval(() => {
+            showScreen(DRAW_SCREEN)
+        }, 1500)
     }
     
     function xxxxx() {
