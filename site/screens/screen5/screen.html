@@ -130,13 +130,17 @@
             palpite: value,
             token_da_sala: token
         }
+        
+        checkGuess()
+    }
 
+    function checkGuess() {
         axios.post(URL_SEND_GUESS, body)
             .then(function (response) {
                 if (response.data.sucesso == true) {
                     if (response.data.acertou == true) {
                         const game = JSON.parse(sessionStorage.getItem('game'))
-                        const playerLabel = sessionStorage.getItem('player') == 1 ? 'player1' : 'player2'
+                        const playerLabel = sessionStorage.getItem('player') == 1 ? PLAYER1 : PLAYER2
                         game[playerLabel].pontuacao = response.data.pontuacao
                         sessionStorage.setItem('game', JSON.stringify(game))
 
@@ -158,13 +162,6 @@
             })
             .catch(function (error) {
                 toast(error)
-            }) 
-        
-        setTimeout(() => {
-            if (Math.random() < 0.2) {
-            } else {
-                toast('Você ainda não acertou')
-            }
-        }, 850)
+            })
     }
 </script>

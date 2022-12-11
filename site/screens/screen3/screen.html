@@ -28,7 +28,7 @@
                         </label>
                         <input type="file" id="file-upload" accept="image/jpeg" style="display: none">
                     </div>
-                    <button class="botao_laranja" onclick="upload(event)">Enviar</button>
+                    <button class="botao_laranja" onclick="upload()">Enviar</button>
                 </div>
             </div>
         </div>
@@ -37,6 +37,16 @@
 
 <script>
     functionCallRegister.register(UPLOAD_SCREEN, loadScreen3)
+    
+    function loadScreen3(props) {
+        const tip = props.tip
+        
+        if (tip) {
+            document.getElementById('tip').innerHTML = tip.toUpperCase()
+        } else {
+            getTip()
+        }
+    }
 
     function getTip() {
         axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
@@ -51,17 +61,7 @@
             })
     }
     
-    function loadScreen3(props) {
-        const tip = props.tip
-        
-        if (tip) {
-            document.getElementById('tip').innerHTML = tip.toUpperCase()
-        } else {
-            getTip()
-        }
-    }
-    
-    function upload(event) {
+    function upload() {
         const file = document.getElementById('file-upload').files
 
         if (!file || !file.length || file.length == 0) {

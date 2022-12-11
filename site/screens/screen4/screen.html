@@ -17,14 +17,18 @@
     function loadScreen4() {
         const token = sessionStorage.getItem('token')
         const currentPlayer = parseInt(sessionStorage.getItem('player'))
+        
+        watchChangeInMatch()
+    }
 
+    function watchChangeInMatch() {
         const intervalId = setInterval(() => {
             axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
                 .then(function (response) {
                     if (response.data['quem-joga'] == currentPlayer) {
                         clearInterval(intervalId)
 
-                        const otherPlayerLabel = sessionStorage.getItem('player') == 1 ? 'player2' : 'player1'
+                        const otherPlayerLabel = sessionStorage.getItem('player') == 1 ? PLAYER2 : PLAYER1
                         const game = JSON.parse(sessionStorage.getItem('game'))
 
                         const oldPoints = game[otherPlayerLabel].pontuacao

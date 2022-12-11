@@ -48,7 +48,7 @@ const toast = (msg, duration = 2500) => {
 function showPlayerResult() {
     try {
         const game = JSON.parse(sessionStorage.getItem('game'))
-        const player = sessionStorage.getItem('player') == 1 ? 'player1' : 'player2'
+        const player = sessionStorage.getItem('player') == 1 ? PLAYER1 : PLAYER2
         const points = game[player].pontuacao
     
         document.querySelectorAll('.total-points').forEach(
@@ -63,7 +63,7 @@ function showPlayerResult() {
 function showOtherPlayerResult() {
     try {
         const game = JSON.parse(sessionStorage.getItem('game'))
-        const otherPlayer = sessionStorage.getItem('player') == 1 ? 'player2' : 'player1'
+        const otherPlayer = sessionStorage.getItem('player') == 1 ? PLAYER2 : PLAYER1
         const points = game[otherPlayer].pontuacao
     
         document.querySelectorAll('.other-player-points').forEach(
@@ -78,7 +78,7 @@ function showOtherPlayerResult() {
 function checkEndGame() {
     const game = JSON.parse(sessionStorage.getItem('game'))
 
-    return game.player1.pontuacao >= 80 || game.player1.player2 >= 80
+    return game.player1.pontuacao >= MAX_POINT_PER_MATCH || game.player1.player2 >= MAX_POINT_PER_MATCH
 }
 
 window.onload = () => {
