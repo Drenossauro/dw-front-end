@@ -15,8 +15,30 @@
     functionCallRegister.register(WAITING_SCREEN, loadScreen4)
 
     function loadScreen4() {
-        setInterval(() => {
-            showScreen(DRAW_SCREEN)
-        }, 1500)
+        const token = sessionStorage.getItem('token')
+        const currentPlayer = parseInt(sessionStorage.getItem('player'))
+
+        const intervalId = setInterval(() => {
+            axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+                .then(function (response) {
+                    if (response.data['quem-joga'] == currentPlayer) {
+                        clearInterval(intervalId)
+
+                        const {player1, player2} = response.data
+                        sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
+
+                        // fazer algoritmo que acha se o player acertou ou nao
+                        // fazer um algorimo que manda pra tela X por Y tempo depois manda pra tela Z definitivamente
+
+                        if (response.data.status == 'upload') {
+                            showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                        } else {
+                            showScreen(DRAW_SCREEN)
+                        }
+                    }
+                }).catch(function (error) {
+                    toast(error);
+                })  
+        }, 1000)
     }
 </script>

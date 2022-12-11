@@ -22,11 +22,11 @@ const functionCallRegister = Object.freeze({
 const showScreen = (screen, props) => {
     currentScreen = screen
 
+    functionCallRegister.call(screen, props)
     document.querySelectorAll('.screen-container').forEach(
         (container, index) => {
             if (currentScreen === index) {
                 container.style.display = 'block'
-                functionCallRegister.call(screen, props)
             } else {
                 container.style.display = 'none'
             }

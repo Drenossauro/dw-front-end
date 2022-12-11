@@ -41,7 +41,22 @@
         document.getElementById('key-number').dataset.token = token
 
         const intervalId = setInterval(() => {
-            showScreen(UPLOAD_SCREEN, {tip: 'fruta'})
+            axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+                .then(function (response) {
+                    if (response.data.status == true) {
+                        if (response.data.player2) {
+                            const {player1, player2} = response.data
+                            sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
+
+                            showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                            clearInterval(intervalId)
+                        }
+                    } else {
+                        throw 'Erro na requisição'
+                    }
+                }).catch(function (error) {
+                    toast(error);
+                })  
         }, 1000)
     }
     
