@@ -1,14 +1,14 @@
-const fs = require('fs');
+const fs = require('fs')
 
 const copyAssets = (path) => {
     fs.readdir(`${path}/site/images`, (err, files) => {
-        if (err) throw err;
+        if (err) throw err
 
         files.forEach(file => {
             fs.copyFile(`site/images/${file}`, `output/images/${file}`, (err) => {
                 if (err) {
                     console.log('Erro ao transferir arquivos')
-                    throw err;
+                    throw err
                 }
             })
         })
@@ -19,7 +19,7 @@ const copyAssets = (path) => {
         fs.copyFile(`site/${file}`, `output/${file}`, (err) => {
             if (err) {
                 console.log('Erro ao transferir arquivos')
-                throw err;
+                throw err
             }
         })
     })
@@ -44,14 +44,11 @@ const compileHTML = (path) => {
         const newValue = searchValue + compiledScreens
 
         const compiledHTML = mainHTML.replace(searchValue, newValue)
-            // i should implement a JS parse or some thing like that
-            // .replace(/(\r\n|\n|\r)/gm, "")
-            // .replace(/\s{2,}/g, ' ')
 
         fs.writeFile('output/output.html', compiledHTML, function (err) {
-            if (err) throw err;
-            console.log('HTML compilado: output/output.html');
-        });
+            if (err) throw err
+            console.log('HTML compilado: output/output.html')
+        })
     })
 }
 

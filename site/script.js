@@ -75,6 +75,12 @@ function showOtherPlayerResult() {
     }
 }
 
+function checkEndGame() {
+    const game = JSON.parse(sessionStorage.getItem('game'))
+
+    return game.player1.pontuacao >= 80 || game.player1.player2 >= 80
+}
+
 window.onload = () => {
     sessionStorage.clear()
     showScreen(INITIAL_SCREEN)

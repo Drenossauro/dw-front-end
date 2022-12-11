@@ -50,13 +50,20 @@
 </div>
 
 <script>
+    function clearInputs() {
+        document.getElementById('nickname-create').value = ''
+        document.getElementById('nickname-enter').value = ''
+        document.getElementById('token-enter').value = ''
+    }
+
     function createRoom() {
         const nickname = document.getElementById('nickname-create').value
         const token = Math.floor(Math.random() * 10000) + 10000
+        clearInputs()
 
-        axios.get(URL_NEW_GAME)
+        axios.post(URL_NEW_GAME, {nickname})
             .then(function (response) {
-                if (response.data.status == true) {
+                if (response.data.sucesso == true) {
                     sessionStorage.setItem('nickname', nickname)
                     sessionStorage.setItem('token', token)
                     sessionStorage.setItem('player', 1)
@@ -67,17 +74,18 @@
                 }
             })
             .catch(function (error) {
-                toast(error);
+                toast(error)
             })
     }
     
     function enterRoom() {
         const nickname = document.getElementById('nickname-enter').value
         const token = document.getElementById('token-enter').value
+        clearInputs()
 
-        axios.post(URL_EXISTING_GAME, {nickname, token})
+        axios.post(URL_EXISTING_GAME, {nickname, token_da_sala: token})
             .then(function (response) {
-                if (response.data.status == true) {
+                if (response.data.sucesso == true) {
                     const {player1, player2} = response.data
 
                     sessionStorage.setItem('nickname', nickname)
@@ -94,7 +102,7 @@
                 }
             })
             .catch(function (error) {
-                toast(error);
+                toast(error)
             })        
     }
 </script>

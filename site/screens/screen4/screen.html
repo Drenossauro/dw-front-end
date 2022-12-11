@@ -24,20 +24,36 @@
                     if (response.data['quem-joga'] == currentPlayer) {
                         clearInterval(intervalId)
 
+                        const otherPlayerLabel = sessionStorage.getItem('player') == 1 ? 'player2' : 'player1'
+                        const game = JSON.parse(sessionStorage.getItem('game'))
+
+                        const oldPoints = game[otherPlayerLabel].pontuacao
+                        const newPoints = response.data[otherPlayerLabel].pontuacao
+                        const diffPoints = newPoints - oldPoints
+
+                        const nextScreenOfPoints = diffPoints > 0 ? OTHER_PLAYER_SUCCESS_GUESS_SCREEN : OTHER_PLAYER_WRONG_GUESS_SCREEN
+
                         const {player1, player2} = response.data
                         sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
 
-                        // fazer algoritmo que acha se o player acertou ou nao
-                        // fazer um algorimo que manda pra tela X por Y tempo depois manda pra tela Z definitivamente
-
-                        if (response.data.status == 'upload') {
-                            showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                        if (checkEndGame()) {
+                            showScreen(END_GAME_SCREEN)
                         } else {
-                            showScreen(DRAW_SCREEN)
+                            showScreen(nextScreenOfPoints)
+
+                            if (response.data.status == 'upload') {
+                                setTimeout(() => {
+                                    showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                                }, 1500)
+                            } else {
+                                setTimeout(() => {
+                                    showScreen(DRAW_SCREEN)
+                                }, 1500)
+                            }
                         }
                     }
                 }).catch(function (error) {
-                    toast(error);
+                    toast(error)
                 })  
         }, 1000)
     }

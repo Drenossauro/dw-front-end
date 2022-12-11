@@ -8,13 +8,13 @@
                 <h1 class="ana-h1">Placar:</h1>
                 <div class="ana-pontuacao">
                     <div class="ana-jogador1">
-                        <h2 class="ana-h2">Nickname1:</h2>
-                        <h2 id="player-1" class="ana-h2">-- pontos</h2>
+                        <h2 class="ana-h2">Nickname1: <span id="nickname-1"></span></h2>
+                        <h2 class="ana-h2"><span id="point-1">--</span> pontos</h2>
                     </div>
                     <div class="ana-barraDivisao"></div>
                     <div class="ana-jogador2">
-                        <h2 class="ana-h2">Nickname2:</h2>
-                        <h2 id="player-2" class="ana-h2">-- pontos</h2>
+                        <h2 class="ana-h2">Nickname2: <span id="nickname-2"></span></h2>
+                        <h2 class="ana-h2"><span id="point-2">--</span> pontos</h2>
                     </div>
                 </div>
             </div>
@@ -23,5 +23,14 @@
 </div>
 
 <script>
-    // to fix
+    functionCallRegister.register(SUCCESS_GUESS_SCREEN, loadScreen10)
+
+    function loadScreen10() {
+        const game = JSON.parse(sessionStorage.getItem('game'))
+
+        document.getElementById('nickname-1').innerHTML = game.player1.nickname
+        document.getElementById('point-1').innerHTML = game.player1.pontuacao
+        document.getElementById('nickname-2').innerHTML = game.player2.nickname
+        document.getElementById('point-2').innerHTML = game.player2.pontuacao
+    }
 </script>

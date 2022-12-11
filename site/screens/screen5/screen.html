@@ -41,23 +41,55 @@
 
 <script>
     functionCallRegister.register(DRAW_SCREEN, loadScreen5)
+    let imgs = []
     let currentPicture = 0
+    let time = 90
 
     function loadScreen5() {
-        // load screens after start the time
-        setTimeout(() => {
-            initTime(90)
-        }, 500);
+        axios.get(URL_RECEIVE_IMAGE)
+            .then(function (response) {
+                if (response.data.sucesso == true) {
+                    const {url_img1, url_img2, url_img3} = response.data
+
+                    imgs = [
+                        url_img1,
+                        url_img2,
+                        url_img3,
+                    ]
+
+                    loadImageInCanvas()
+                    initClock()
+                } else {
+                    throw 'Erro na requisição'
+                }
+            })
+            .catch(function (error) {
+                toast(error)
+            })
     }
     
-    function initTime(time) {
+    function loadImageInCanvas() {
+        const imgURL = imgs[currentPicture]
+
+        const img = new Image()
+        img.src = imgURL
+
+        img.onload = () => {
+            const canvas = document.querySelector('canvas')
+            const ctx = canvas.getContext('2d')
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        }
+    }
+    
+    function initClock() {
         const intervalId = setInterval(() => {
             time--
             showTime(time)
             checkIfShouldRevealMore(time)
 
-            if (time == 0) {
-                endGame(intervalId)
+            if (time <= 0) {
+                finishGame(intervalId)
             }
         }, 1000)
     }
@@ -80,11 +112,11 @@
             currentPicture == 1 && time < 30
         ) {
             currentPicture++
-            // change picture
+            loadImageInCanvas()
         }
     }
 
-    function endGame(intervalId) {
+    function finishGame(intervalId) {
         clearInterval(intervalId)
         showScreen(WRONG_GUESS_SCREEN)
     }
@@ -92,13 +124,47 @@
     function guess() {
         const value = document.getElementById('guess').value
         document.getElementById('guess').value = ''
+
+        const body = {
+            tempo_em_segundos: time,
+            palpite: value,
+            token_da_sala: token
+        }
+
+        axios.post(URL_SEND_GUESS, body)
+            .then(function (response) {
+                if (response.data.sucesso == true) {
+                    if (response.data.acertou == true) {
+                        const game = JSON.parse(sessionStorage.getItem('game'))
+                        const playerLabel = sessionStorage.getItem('player') == 1 ? 'player1' : 'player2'
+                        game[playerLabel].pontuacao = response.data.pontuacao
+                        sessionStorage.setItem('game', JSON.stringify(game))
+
+                        if (checkEndGame()) {
+                            showScreen(END_GAME_SCREEN)
+                        } else {
+                            showScreen(SUCCESS_GUESS_SCREEN)
+
+                            setTimeout(() => {
+                                showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                            }, 1500)
+                        }
+                    } else {
+                        toast('Errado! Tente novamente')
+                    }
+                } else {
+                    throw 'Erro na requisição'
+                }
+            })
+            .catch(function (error) {
+                toast(error)
+            }) 
         
         setTimeout(() => {
             if (Math.random() < 0.2) {
-                showScreen(SUCCESS_GUESS_SCREEN)
             } else {
                 toast('Você ainda não acertou')
             }
-        }, 850);
+        }, 850)
     }
 </script>

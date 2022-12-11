@@ -38,8 +38,27 @@
 <script>
     functionCallRegister.register(UPLOAD_SCREEN, loadScreen3)
 
-    function loadScreen3({tip}) {
-        document.getElementById('tip').innerHTML = tip.toUpperCase()
+    function getTip() {
+        axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+            .then(function (response) {
+                if (response.data.sucesso == true) {
+                    document.getElementById('tip').innerHTML = response.data['palavra-chave'].toUpperCase()
+                } else {
+                    throw 'Erro na requisição'
+                }
+            }).catch(function (error) {
+                toast(error)
+            })
+    }
+    
+    function loadScreen3(props) {
+        const tip = props.tip
+        
+        if (tip) {
+            document.getElementById('tip').innerHTML = tip.toUpperCase()
+        } else {
+            getTip()
+        }
     }
     
     function upload(event) {
@@ -60,7 +79,7 @@
             }
         })
         .then(function (response) {
-            if (response.data.status == true) {
+            if (response.data.sucesso == true) {
                 showScreen(WAITING_SCREEN)
             } else {
                 throw 'Erro na requisição'
