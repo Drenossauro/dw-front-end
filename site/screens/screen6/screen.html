@@ -1,7 +1,7 @@
 <div class="screen-container">
     <div class="paulo_pai_container">
         <div class="paulo_container">
-            <img src="img/acertou.png">
+            <img src="images/acertou.png">
         </div>
         <div class="paulo_container">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -10,11 +10,15 @@
         </div>
         <div class="paulo_container">
             <div class="paulo_imagem_pontuação">
-                <img src="img/pontuacao.png">
+                <img src="images/pontuacao.png">
             </div>
             <div class="paulo_numero">
-                <h3 class="paulo-h3">8 pontos</h3>
+                <h3 class="paulo-h3"><span class="total-points">--</span> pontos</h3>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    functionCallRegister.register(SUCCESS_GUESS_SCREEN, showPlayerResult)
+</script>

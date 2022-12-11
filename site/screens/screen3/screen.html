@@ -2,15 +2,12 @@
     <div class="eloisa_algemiro_container">
         <div class="eloisa_algemiro_content">
             <div class="eloisa_algemiro_tempo">
-                <img src="tempo.png" alt="">
+                <img src="images/tempo.png">
                 <h2>01:30</h2>
             </div>
-
             <div class="eloisa_algemiro_box1">
-            
-                <img src="Dica.png" alt="">
-                <h2>Bola de futebol</h2>
-                    
+                <img src="images/Dica.png">
+                <h2 id="tip">--</h2>
             </div>
         </div>
         <div class="eloisa_algemiro_box2">
@@ -18,22 +15,78 @@
                 No seu computador, faça o desenho solicitado, salve a imagem (no formato .jpeg) e faça upload na área indicada:
             </h4>
         </div>
-            <div class="eloisa_algerimo_box3">
-                <div class="eloisa_algerimo_novo_jogo">
-                    <div class="eloisa_algerimo_titulo_card">
-                        <h3>Enviar imagem</h3>
-                    </div>
-                    <!-- ====================== -->
-                    <div class="eloisa_algerimo_novo_jogo1">
-                        <div id="ajuste">
-                            <button class="botao_branco">
-                                <i class='bx bx-upload'></i>
-                                Selecione a imagem
-                            </button>
-                        </div>
-                        <button class="botao_laranja">Criar Sala</button>
-                    </div>
+        <div class="eloisa_algerimo_box3">
+            <div class="eloisa_algerimo_novo_jogo">
+                <div class="eloisa_algerimo_titulo_card">
+                    <h3>Enviar imagem</h3>
                 </div>
+                <div class="eloisa_algerimo_novo_jogo1">
+                    <div id="ajuste">
+                        <label for="file-upload" class="botao_branco">
+                            <i class='bx bx-upload'></i>
+                            Selecione a imagem
+                        </label>
+                        <input type="file" id="file-upload" accept="image/jpeg" style="display: none">
+                    </div>
+                    <button class="botao_laranja" onclick="upload()">Enviar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    functionCallRegister.register(UPLOAD_SCREEN, loadScreen3)
+    
+    function loadScreen3(props) {
+        const tip = props.tip
+        
+        if (tip) {
+            document.getElementById('tip').innerHTML = tip.toUpperCase()
+        } else {
+            getTip()
+        }
+    }
+
+    function getTip() {
+        axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+            .then(function (response) {
+                if (response.data.sucesso == true) {
+                    document.getElementById('tip').innerHTML = response.data['palavra-chave'].toUpperCase()
+                } else {
+                    throw 'Erro na requisição'
+                }
+            }).catch(function (error) {
+                toast(error)
+            })
+    }
+    
+    function upload() {
+        const file = document.getElementById('file-upload').files
+
+        if (!file || !file.length || file.length == 0) {
+            toast('Nenhum arquivo para subir')
+            return
+        }
+
+        const formData = new FormData()
+        formData.append("arquivo_de_imagem", imagefile.file[0])
+        formData.append("token_da_sala", sessionStorage.getItem('token'))
+        
+        axios.post(URL_IMAGE_UPLOAD, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (response) {
+            if (response.data.sucesso == true) {
+                showScreen(WAITING_SCREEN)
+            } else {
+                throw 'Erro na requisição'
+            }
+        })
+        .catch(function (error) {
+            toast(error)
+        })  
+    }
+</script>

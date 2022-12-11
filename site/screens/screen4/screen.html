@@ -1,11 +1,7 @@
-<div class="screen-container">
-    <div class="emanuel-imagem">
-        <img src="background.png" alt="fundo">
-    </div>
-    
-    <div class="emanuel-main">
+<div class="screen-container">    
+    <div class="emanuel-main-4">
         <div id="emanuel-jogador">
-            <img src="mensagem.png" alt="mensagem">
+            <img src="images/mensagem.png" alt="mensagem">
         </div>
 
         <div id="emanuel-lupa">
@@ -14,3 +10,55 @@
         </div>
     </div>
 </div>
+
+<script>
+    functionCallRegister.register(WAITING_SCREEN, loadScreen4)
+
+    function loadScreen4() {
+        const token = sessionStorage.getItem('token')
+        const currentPlayer = parseInt(sessionStorage.getItem('player'))
+        
+        watchChangeInMatch()
+    }
+
+    function watchChangeInMatch() {
+        const intervalId = setInterval(() => {
+            axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+                .then(function (response) {
+                    if (response.data['quem-joga'] == currentPlayer) {
+                        clearInterval(intervalId)
+
+                        const otherPlayerLabel = sessionStorage.getItem('player') == 1 ? PLAYER2 : PLAYER1
+                        const game = JSON.parse(sessionStorage.getItem('game'))
+
+                        const oldPoints = game[otherPlayerLabel].pontuacao
+                        const newPoints = response.data[otherPlayerLabel].pontuacao
+                        const diffPoints = newPoints - oldPoints
+
+                        const nextScreenOfPoints = diffPoints > 0 ? OTHER_PLAYER_SUCCESS_GUESS_SCREEN : OTHER_PLAYER_WRONG_GUESS_SCREEN
+
+                        const {player1, player2} = response.data
+                        sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
+
+                        if (checkEndGame()) {
+                            showScreen(END_GAME_SCREEN)
+                        } else {
+                            showScreen(nextScreenOfPoints)
+
+                            if (response.data.status == 'upload') {
+                                setTimeout(() => {
+                                    showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                                }, 1500)
+                            } else {
+                                setTimeout(() => {
+                                    showScreen(DRAW_SCREEN)
+                                }, 1500)
+                            }
+                        }
+                    }
+                }).catch(function (error) {
+                    toast(error)
+                })  
+        }, 1000)
+    }
+</script>

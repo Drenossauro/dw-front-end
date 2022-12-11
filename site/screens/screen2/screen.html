@@ -3,21 +3,18 @@
         <div class="flavio-aguadando-gif">
             <div class="flavio-aguardando">
                 <p class="flavio-p-figura">
-                    <img src="./figuras/aguardando_jogador.png" />
+                    <img src="images/aguardando_jogador.png" />
                 </p>
             </div>
             <div class="flavio-gif">
                 <p class="flavio-gif-text">
-                    <img
-                        class="flavio-gif-espera"
-                        src="./figuras/espera2.gif"
-                    />
+                    <img src="images/espera2.gif" class="flavio-gif-espera" />
                 </p>
             </div>
         </div>
         <div>
             <p class="flavio-compartilhe">
-                Compartilhe a chave de acesso com o seu oponete
+                Compartilhe a chave de acesso com o seu oponente
             </p>
         </div>
         <div class="flavio-chave-acesso">
@@ -26,12 +23,60 @@
             </div>
             <div class="flavio-numero">
                 <div class="flavio-chave-numero">
-                    <p>12345678</p>
+                    <p id="key-number">------</p>
                 </div>
-                <button class="flavio-chave-botao">
+                <button class="flavio-chave-botao" onclick="saveKey(this)">
                     <p class="flavio-copiar-chave">Copiar chave</p>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    functionCallRegister.register(WAITING_FOR_SECOND_PLAYER_SCREEN, loadScreen2)
+
+    function loadScreen2({token}) {
+        document.getElementById('key-number').innerHTML = token
+        document.getElementById('key-number').dataset.token = token
+
+        const intervalId = setInterval(() => {
+            axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
+                .then(function (response) {
+                    if (response.data.sucesso == true) {
+                        if (response.data.player2) {
+                            const {player1, player2} = response.data
+                            sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
+
+                            showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
+                            clearInterval(intervalId)
+                        }
+                    } else {
+                        throw 'Erro na requisição'
+                    }
+                }).catch(function (error) {
+                    toast(error)
+                })  
+        }, 1000)
+    }
+    
+    function saveKey(button) {
+        button.focus()
+        if (navigator && navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(document.getElementById('key-number').dataset.token).then(
+                () => {
+                    document.getElementById('key-number').innerHTML = 'Copiado'
+
+                    setTimeout(() => {
+                        const keyContainer = document.getElementById('key-number')
+                        keyContainer.innerHTML = keyContainer.dataset.token
+                    }, 2500)
+                },
+                (err) => {
+                    console.error(err, 'clipboard write failed')
+                    document.getElementById('key-number').innerHTML = 'Erro ao copiar'
+                }
+            )
+        }
+    }
+</script>

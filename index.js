@@ -1,4 +1,4 @@
-const {copyAssets, compileHTML} = require('./compiler/compiler-functions');
+const {copyAssets, compileHTML} = require('./compiler/compiler-functions')
 
 const run = () => {
     copyAssets(__dirname)
