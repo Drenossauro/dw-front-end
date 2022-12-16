@@ -68,10 +68,8 @@
             .then(function (response) {
                 if (response.data.sucesso == true) {
                     const token = response.data.token_da_sala
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('player', 1)
 
+                    initGame(nickname, token, 1, null)
                     showScreen(WAITING_FOR_SECOND_PLAYER_SCREEN, {token})
                 } else {
                     throw 'Erro na requisição'
@@ -96,14 +94,7 @@
                 if (response.data.sucesso == true) {
                     const {player1, player2} = response.data
 
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('player', 2)
-                    sessionStorage.setItem('game', JSON.stringify({
-                        player1,
-                        player2
-                    }))
-
+                    initGame(nickname, token, 2, {player1, player2})
                     showScreen(WAITING_SCREEN)
                 } else {
                     throw 'Erro na requisição'

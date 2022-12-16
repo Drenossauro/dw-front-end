@@ -20,8 +20,23 @@ const OTHER_PLAYER_SUCCESS_GUESS_SCREEN = 8
 const OTHER_PLAYER_WRONG_GUESS_SCREEN = 9
 const END_GAME_SCREEN = 1
 
+// SESSIONSTORAGE INDEXES
+
+const MATCH = 'match'
+const NICKNAME = 'nickname'
+const TOKEN = 'token'
+const PLAYER = 'player'
+const GAME = 'game'
+
+// GAME STATUS
+
+const UPLOAD = 'upload'
+const CHUTE = 'chute'
+
 // SETTINGS
 
 const MAX_POINT_PER_MATCH = 80
+const INTERVAL_BETWEEN_SCREENS_POINTS = 2300 // in miliseconds
+const MATCH_TIME = 90
 const PLAYER1 = 'player1'
 const PLAYER2 = 'player2'

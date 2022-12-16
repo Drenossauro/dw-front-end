@@ -23,14 +23,14 @@
 </div>
 
 <script>
-    functionCallRegister.register(SUCCESS_GUESS_SCREEN, loadScreen10)
+    functionCallRegister.register(END_GAME_SCREEN, loadScreen10)
 
     function loadScreen10() {
-        const game = JSON.parse(sessionStorage.getItem('game'))
+        const game = getGame()
 
-        document.getElementById('nickname-1').innerHTML = game.player1.nickname
-        document.getElementById('point-1').innerHTML = game.player1.pontuacao
-        document.getElementById('nickname-2').innerHTML = game.player2.nickname
-        document.getElementById('point-2').innerHTML = game.player2.pontuacao
+        document.getElementById('nickname-1').innerHTML = game?.player1?.nickname
+        document.getElementById('point-1').innerHTML = game?.player1?.pontuacao
+        document.getElementById('nickname-2').innerHTML = game?.player2?.nickname
+        document.getElementById('point-2').innerHTML = game?.player2?.pontuacao
     }
 </script>

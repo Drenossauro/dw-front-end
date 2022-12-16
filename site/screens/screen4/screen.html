@@ -13,53 +13,79 @@
 
 <script>
     functionCallRegister.register(WAITING_SCREEN, loadScreen4)
+    let diffPoints = null
 
     function loadScreen4() {
-        watchChangeInMatch()
+        diffPoints = null
+
+        try {
+            watchChangeInMatch()
+        } catch (error) {
+            toast(error)            
+        }
     }
 
     function watchChangeInMatch() {
-        const token = sessionStorage.getItem('token')
-        const currentPlayer = parseInt(sessionStorage.getItem('player'))
+        const token = getToken()
+        const currentPlayer = getPlayer()
 
         const intervalId = setInterval(() => {
             axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
                 .then(function (response) {
+                    if (!diffPoints) {
+                        diffPoints = getDiffPointsOtherPlayerAndUpdateGameObject(response)
+
+                        if (checkEndGame()) {
+                            showScreen(END_GAME_SCREEN)
+                            clearInterval(intervalId)
+                            return
+                        }
+                    }
+
                     if (response.data['quem-joga'] == currentPlayer) {
                         clearInterval(intervalId)
 
-                        const otherPlayerLabel = sessionStorage.getItem('player') == 1 ? PLAYER2 : PLAYER1
-                        const game = JSON.parse(sessionStorage.getItem('game'))
+                        // uma regra bem especifica para evitar que a tela de placar apareça na primeira vez
+                        // já que não placar a ser mostrado
+                        if (!(getMatch() == 0 && currentPlayer == 2)) {
+                            showScreen(selectPointScreen())
+                        }
 
-                        const oldPoints = game[otherPlayerLabel].pontuacao
-                        const newPoints = response.data[otherPlayerLabel].pontuacao
-                        const diffPoints = newPoints - oldPoints
-
-                        const nextScreenOfPoints = diffPoints > 0 ? OTHER_PLAYER_SUCCESS_GUESS_SCREEN : OTHER_PLAYER_WRONG_GUESS_SCREEN
-
-                        const {player1, player2} = response.data
-                        sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
-
-
-                        // bug na tela de waiting
-                        if (checkEndGame()) {
-                            showScreen(END_GAME_SCREEN)
-                        } else {
-                            
-                            if (response.data.status == 'upload') {
-                                showScreen(nextScreenOfPoints)
-
-                                setTimeout(() => {
-                                    showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
-                                }, 1500)
+                        setTimeout(() => {
+                            if (response.data.status == UPLOAD) {
+                                showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
                             } else {
                                 showScreen(DRAW_SCREEN)
                             }
-                        }
+
+                            addMatch()
+                        }, INTERVAL_BETWEEN_SCREENS_POINTS)
+                    } else {
+                        
                     }
                 }).catch(function (error) {
                     toast(error)
                 })  
         }, 1000)
+    }
+
+    function getDiffPointsOtherPlayerAndUpdateGameObject(response) {        
+        const otherPlayerLabel = getOtherPlayerLabel()
+        const game = getGame()
+
+        const oldPoints = game[otherPlayerLabel].pontuacao
+        const newPoints = response.data[otherPlayerLabel].pontuacao
+        updateGameObject(response)
+
+        return newPoints - oldPoints
+    }
+
+    function selectPointScreen() {
+        return diffPoints > 0 ? OTHER_PLAYER_SUCCESS_GUESS_SCREEN : OTHER_PLAYER_WRONG_GUESS_SCREEN
+    }
+
+    function updateGameObject(response) {
+        const {player1, player2} = response.data
+        setGame({player1, player2})
     }
 </script>

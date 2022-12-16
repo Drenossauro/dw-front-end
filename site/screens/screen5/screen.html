@@ -43,16 +43,19 @@
     functionCallRegister.register(DRAW_SCREEN, loadScreen5)
     let imgs = []
     let currentPicture = 0
-    let time = 90
+    let time = MATCH_TIME
+    let intervalIdFromUploadScreen = null
 
     function loadScreen5() {
-        const token = sessionStorage.getItem('token')
+        const token = getToken()
+        intervalIdFromUploadScreen = null
 
         axios.get(`${URL_RECEIVE_IMAGE}?token_da_sala=${token}`)
             .then(function (response) {
                 if (response.data.sucesso == true) {
                     const {url_img1, url_img2, url_img3} = response.data
 
+                    currentPicture = 0
                     imgs = [
                         url_img1,
                         url_img2,
@@ -85,14 +88,14 @@
     }
     
     function initClock() {
-        time = 90
-        const intervalId = setInterval(() => {
+        time = MATCH_TIME
+        intervalIdFromUploadScreen = setInterval(() => {
             time--
             showTime(time)
             checkIfShouldRevealMore(time)
 
             if (time <= 0) {
-                finishGame(intervalId)
+                finishGame()
             }
         }, 1000)
     }
@@ -119,10 +122,10 @@
         }
     }
 
-    function finishGame(intervalId) {
-        clearInterval(intervalId)
+    function finishGame() {
+        clearDrawScreen()
         showScreen(WRONG_GUESS_SCREEN)
-        const token = sessionStorage.getItem('token')
+        const token = getToken()
         
         const body = {
             tempo_em_segundos: 0,
@@ -130,7 +133,7 @@
             token_da_sala: token
         }
 
-        const action = function (response) {
+        const action = function(response) {
             setTimeout(() => {
                 showScreen(UPLOAD_SCREEN)
             }, 1000)
@@ -141,7 +144,7 @@
 
     function tryGuess() {
         const value = document.getElementById('guess-input').value
-        const token = sessionStorage.getItem('token')
+        const token = getToken()
         document.getElementById('guess-input').value = ''
 
         const body = {
@@ -153,10 +156,12 @@
         const action = function (response) {
             if (response.data.sucesso == true) {
                 if (response.data.acertou == true) {
-                    const game = JSON.parse(sessionStorage.getItem('game'))
-                    const playerLabel = sessionStorage.getItem('player') == 1 ? PLAYER1 : PLAYER2
+                    clearDrawScreen()
+
+                    const game = getGame()
+                    const playerLabel = getPlayerLabel()
                     game[playerLabel].pontuacao = response.data.pontuacao
-                    sessionStorage.setItem('game', JSON.stringify(game))
+                    setGame(game)
 
                     if (checkEndGame()) {
                         showScreen(END_GAME_SCREEN)
@@ -188,5 +193,12 @@
             .catch(function (error) {
                 toast(error)
             })
+    }
+
+    function clearDrawScreen() {
+        clearInterval(intervalIdFromUploadScreen)
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
 </script>
