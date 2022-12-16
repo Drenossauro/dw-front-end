@@ -25,13 +25,13 @@
                         <h1>Enviar palpite</h1>
                     </div>
 
-                    <form action="#" method="post">
+                    <form method="post">
                         <div id="emanuel-palpite">
                             <h2>Palpite:</h2>
-                            <input type="text" name="guess" id="guess" placeholder="Digite aqui seu palpite">
+                            <input type="text" name="guess" id="guess-input" placeholder="Digite aqui seu palpite">
                         </div>
                         
-                        <input type="button" value="Enviar">
+                        <button type="button" class="send-button" onclick="tryGuess()">Enviar</button>
                     </form>
                 </div>
             </div>
@@ -46,7 +46,9 @@
     let time = 90
 
     function loadScreen5() {
-        axios.get(URL_RECEIVE_IMAGE)
+        const token = sessionStorage.getItem('token')
+
+        axios.get(`${URL_RECEIVE_IMAGE}?token_da_sala=${token}`)
             .then(function (response) {
                 if (response.data.sucesso == true) {
                     const {url_img1, url_img2, url_img3} = response.data
@@ -83,6 +85,7 @@
     }
     
     function initClock() {
+        time = 90
         const intervalId = setInterval(() => {
             time--
             showTime(time)
@@ -119,47 +122,69 @@
     function finishGame(intervalId) {
         clearInterval(intervalId)
         showScreen(WRONG_GUESS_SCREEN)
+        const token = sessionStorage.getItem('token')
+        
+        const body = {
+            tempo_em_segundos: 0,
+            palpite: '',
+            token_da_sala: token
+        }
+
+        const action = function (response) {
+            setTimeout(() => {
+                showScreen(UPLOAD_SCREEN)
+            }, 1000)
+        }
+
+        sendRequestInDrawScreen(body, action)
     }
 
-    function guess() {
-        const value = document.getElementById('guess').value
-        document.getElementById('guess').value = ''
+    function tryGuess() {
+        const value = document.getElementById('guess-input').value
+        const token = sessionStorage.getItem('token')
+        document.getElementById('guess-input').value = ''
 
         const body = {
             tempo_em_segundos: time,
             palpite: value,
             token_da_sala: token
         }
-        
-        checkGuess()
-    }
 
-    function checkGuess() {
-        axios.post(URL_SEND_GUESS, body)
-            .then(function (response) {
-                if (response.data.sucesso == true) {
-                    if (response.data.acertou == true) {
-                        const game = JSON.parse(sessionStorage.getItem('game'))
-                        const playerLabel = sessionStorage.getItem('player') == 1 ? PLAYER1 : PLAYER2
-                        game[playerLabel].pontuacao = response.data.pontuacao
-                        sessionStorage.setItem('game', JSON.stringify(game))
+        const action = function (response) {
+            if (response.data.sucesso == true) {
+                if (response.data.acertou == true) {
+                    const game = JSON.parse(sessionStorage.getItem('game'))
+                    const playerLabel = sessionStorage.getItem('player') == 1 ? PLAYER1 : PLAYER2
+                    game[playerLabel].pontuacao = response.data.pontuacao
+                    sessionStorage.setItem('game', JSON.stringify(game))
 
-                        if (checkEndGame()) {
-                            showScreen(END_GAME_SCREEN)
-                        } else {
-                            showScreen(SUCCESS_GUESS_SCREEN)
-
-                            setTimeout(() => {
-                                showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
-                            }, 1500)
-                        }
+                    if (checkEndGame()) {
+                        showScreen(END_GAME_SCREEN)
                     } else {
-                        toast('Errado! Tente novamente')
+                        showScreen(SUCCESS_GUESS_SCREEN)
+
+                        setTimeout(() => {
+                            showScreen(UPLOAD_SCREEN)
+                        }, 1500)
                     }
                 } else {
-                    throw 'Erro na requisição'
+                    toast('Errado! Tente novamente')
+                }
+            } else {
+                throw 'Erro na requisição'
+            }
+        }
+        
+        sendRequestInDrawScreen(body, action)
+    }
+
+    function sendRequestInDrawScreen(body, action) {
+        axios.post(URL_SEND_GUESS, body, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
             })
+            .then(action)
             .catch(function (error) {
                 toast(error)
             })

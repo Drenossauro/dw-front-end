@@ -58,12 +58,16 @@
 
     function createRoom() {
         const nickname = document.getElementById('nickname-create').value
-        const token = Math.floor(Math.random() * 10000) + 10000
         clearInputs()
 
-        axios.post(URL_NEW_GAME, {nickname})
+        axios.post(URL_NEW_GAME, {nickname}, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             .then(function (response) {
                 if (response.data.sucesso == true) {
+                    const token = response.data.token_da_sala
                     sessionStorage.setItem('nickname', nickname)
                     sessionStorage.setItem('token', token)
                     sessionStorage.setItem('player', 1)
@@ -83,7 +87,11 @@
         const token = document.getElementById('token-enter').value
         clearInputs()
 
-        axios.post(URL_EXISTING_GAME, {nickname, token_da_sala: token})
+        axios.post(URL_EXISTING_GAME, {nickname, token_da_sala: token}, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             .then(function (response) {
                 if (response.data.sucesso == true) {
                     const {player1, player2} = response.data

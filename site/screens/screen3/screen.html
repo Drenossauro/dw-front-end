@@ -39,7 +39,7 @@
     functionCallRegister.register(UPLOAD_SCREEN, loadScreen3)
     
     function loadScreen3(props) {
-        const tip = props.tip
+        const tip = props?.tip
         
         if (tip) {
             document.getElementById('tip').innerHTML = tip.toUpperCase()
@@ -49,6 +49,8 @@
     }
 
     function getTip() {
+        const token = sessionStorage.getItem('token')
+
         axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
             .then(function (response) {
                 if (response.data.sucesso == true) {
@@ -70,9 +72,9 @@
         }
 
         const formData = new FormData()
-        formData.append("arquivo_de_imagem", imagefile.file[0])
+        formData.append("arquivo_de_imagem", file[0])
         formData.append("token_da_sala", sessionStorage.getItem('token'))
-        
+
         axios.post(URL_IMAGE_UPLOAD, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

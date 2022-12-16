@@ -1,5 +1,4 @@
 
-let currentScreen = null
 const functionCallRegister = Object.freeze({
     _functions: new Map(),
 
@@ -20,16 +19,10 @@ const functionCallRegister = Object.freeze({
 })
 
 const showScreen = (screen, props) => {
-    currentScreen = screen
-
     functionCallRegister.call(screen, props)
     document.querySelectorAll('.screen-container').forEach(
         (container, index) => {
-            if (currentScreen === index) {
-                container.style.display = 'block'
-            } else {
-                container.style.display = 'none'
-            }
+            container.style.display = screen === index ? 'block' : 'none'
         }
     )
 }

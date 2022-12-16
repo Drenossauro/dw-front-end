@@ -45,13 +45,14 @@
                 .then(function (response) {
                     if (response.data.sucesso == true) {
                         if (response.data.player2) {
+                            clearInterval(intervalId)
                             const {player1, player2} = response.data
                             sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
 
                             showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
-                            clearInterval(intervalId)
                         }
                     } else {
+                        clearInterval(intervalId)
                         throw 'Erro na requisição'
                     }
                 }).catch(function (error) {

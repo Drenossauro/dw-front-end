@@ -15,13 +15,13 @@
     functionCallRegister.register(WAITING_SCREEN, loadScreen4)
 
     function loadScreen4() {
-        const token = sessionStorage.getItem('token')
-        const currentPlayer = parseInt(sessionStorage.getItem('player'))
-        
         watchChangeInMatch()
     }
 
     function watchChangeInMatch() {
+        const token = sessionStorage.getItem('token')
+        const currentPlayer = parseInt(sessionStorage.getItem('player'))
+
         const intervalId = setInterval(() => {
             axios.get(`${URL_EXISTING_GAME}?token_da_sala=${token}`)
                 .then(function (response) {
@@ -40,19 +40,20 @@
                         const {player1, player2} = response.data
                         sessionStorage.setItem('game', JSON.stringify({ player1, player2 }))
 
+
+                        // bug na tela de waiting
                         if (checkEndGame()) {
                             showScreen(END_GAME_SCREEN)
                         } else {
-                            showScreen(nextScreenOfPoints)
-
+                            
                             if (response.data.status == 'upload') {
+                                showScreen(nextScreenOfPoints)
+
                                 setTimeout(() => {
                                     showScreen(UPLOAD_SCREEN, {tip: response.data['palavra-chave']})
                                 }, 1500)
                             } else {
-                                setTimeout(() => {
-                                    showScreen(DRAW_SCREEN)
-                                }, 1500)
+                                showScreen(DRAW_SCREEN)
                             }
                         }
                     }
