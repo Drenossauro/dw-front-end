@@ -616,7 +616,7 @@ body .emanuel-imagem {
     outline: 0;
 }
 
-.emanuel-boxDois-main input[type=button] {
+.emanuel-boxDois-main .send-button {
     height: 48px;
     width: 280px;
     border-radius: 24px;
